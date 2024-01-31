@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIN JS</title>
+</head>
+<body>
+
+<script>
+
+  // a) Use of a for loop:
+  
+  function forLoopExample() {
+    let result = 0;
+    for (let i = 1; i <= 7; i++) {
+      result += i;
+    }
+    console.log("For Loop Result:", result);
+  }
+
+  // b) Use of a while loop:
+  
+  function whileLoopExample() {
+    let result = 0;
+    let i = 1;
+    while (i <= 7) {
+      result += i;
+      i++;
+    }
+    console.log("While Loop Result:", result);
+  }
+
+  // c) Use of a for .. in loop:
+  
+  function forInLoopExample(obj) {
+    for (let key in obj) {
+      console.log("For .. In Loop Result:", key, obj[key]);
+    }
+  }
+
+  // d) Use of a for .. of loop:
+  
+  function forOfLoopExample(arr) {
+    for (let value of arr) {
+      console.log("For .. Of Loop Result:", value);
+    }
+  }
+
+  // e) Use of an if instruction:
+  
+  function checkIfNumber(a, b) {
+    if (typeof a === 'number' && typeof b === 'number') {
+      console.log("If Instruction Result:", a + b);
+    } else {
+      console.error("Error: Both parameters should be numbers.");
+    }
+  }
+
+  // f) A function taking two or more parameters, checking whether they are numbers and doing some numeric operations on them, or, if impossible, returning an error (bonus points for using reducing operation from functional programming):
+  
+  function numericOperations(...numbers) {
+    const isAllNumbers = numbers.every(num => typeof num === 'number');
+    if (isAllNumbers) {
+      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+      console.log("Reducing Operation Result:", sum);
+    } else {
+      console.error("Error: All parameters should be numbers.");
+    }
+  }
+
+  // g) Function taking a variable amount of parameters and doing something useful with them:
+  
+  function sumAllNumbers(...numbers) {
+    const totalSum = numbers.reduce((acc, curr) => acc + curr, 0);
+    console.log("Sum of All Numbers:", totalSum);
+  }
+
+  // h) A function taking a function as a parameter and doing something with it + two example functions that make sense with the context of passing it as the parameter:
+  
+  function processFunction(func, value) {
+    const result = func(value);
+    console.log("Processed Function Result:", result);
+  }
+
+  function cube(val) {
+    return val * val * val;
+  }
+
+  function triple(val) {
+    return val * 3;
+  }
+
+  // i) Using a constructor to create objects – objects should have at least three differently typed fields and 1 method doing something:
+  
+  function OrderMeal(name, price, isHere) {
+    this.name = name;
+    this.price = price;
+    this.isHere = isHere;
+	if (isHere) {
+      this.whereToEat = "eat it here";
+    } else {
+      this.whereToEat = "take it away";
+    }
+    this.order = function() {
+      console.log(`You ordered ${this.name}. Payment is ${this.price} PLN. You will ${this.whereToEat}.`);
+    };
+  }
+
+  const order1 = new OrderMeal('Hamburger', 20, false);
+  const order2 = new OrderMeal('Nuggets', 23, true);
+
+  // j) Using a class to create an object – objects should have at least three fields of different types, a constructor and 1 method:
+  
+  class Subject {
+    constructor(name, grade, isExempted) {
+      this.name = name;
+      this.grade = grade;
+      this.isExempted = isExempted;
+	  if (isExempted) {
+		this.exemption = "yes";
+		} else {
+		this.exemption = "no";
+		}
+    }
+
+    sub() {
+      console.log(`Subject - ${this.name}. Practice grade - ${this.grade}. Exemption from the exam - ${this.exemption}`);
+    }
+  }
+
+  const subject1 = new Subject('BYT', 4.5, true);
+  const subject2 = new Subject('GRK', 3, false);
+
+
+  // Use demonstration:
+  
+  forLoopExample();
+  whileLoopExample();
+  
+  const obj = { Alice: 23, Maria: 31, Mike: 27 };
+  forInLoopExample(obj);
+
+  const arr = [6, 17, 435];
+  forOfLoopExample(arr);
+
+  checkIfNumber(4, 6);
+  checkIfNumber('a', 6);
+
+  numericOperations(7, 3, 3);
+  numericOperations('a', 3, 3);
+
+  sumAllNumbers(3, 6, 4, 7, 9);
+
+  processFunction(cube, 5);
+  processFunction(triple, 7);
+
+  order1.order();
+  order2.order();
+
+  subject1.sub();
+  subject2.sub();
+
+</script>
+
+</body>
+</html>
